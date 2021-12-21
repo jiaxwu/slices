@@ -1,12 +1,10 @@
 package slices
 
 // ToSlice iterates map's key and value to generate a new slice
-func ToSlice[Key comparable, Value any, T any](dict map[Key]Value, transform func(key Key, value Value) T) []T {
-	list := make([]T, len(dict))
-	var i = 0
+func ToSlice[K comparable, V any, T any](dict map[K]V, transform func(key K, value V) T) []T {
+	slice := make([]T, 0, len(dict))
 	for key, value := range dict {
-		list[i] = transform(key, value)
-		i += 1
+		slice = append(slice, transform(key, value))
 	}
-	return list
+	return slice
 }

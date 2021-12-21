@@ -9,8 +9,8 @@ import (
 func TestToMap(t *testing.T) {
 	type args struct {
 		slice     []int
-		keyFunc   func(int) int
-		valueFunc func(int) any
+		keyFunc   func(int, int, []int) int
+		valueFunc func(int, int, []int) any
 	}
 	tests := []struct {
 		name string
@@ -21,11 +21,11 @@ func TestToMap(t *testing.T) {
 			name: "number1",
 			args: args{
 				slice: []int{2, 3, 4, 13},
-				keyFunc: func(i int) int {
-					return i
+				keyFunc: func(item int, index int, slice []int) int {
+					return item
 				},
-				valueFunc: func(i int) any {
-					return i
+				valueFunc: func(item int, index int, slice []int) any {
+					return item
 				},
 			},
 			want: map[int]any{
@@ -36,11 +36,11 @@ func TestToMap(t *testing.T) {
 			name: "number2",
 			args: args{
 				slice: []int{2, 3, 4, 13},
-				keyFunc: func(i int) int {
-					return i
+				keyFunc: func(item int, index int, slice []int) int {
+					return item
 				},
-				valueFunc: func(i int) any {
-					return fmt.Sprint(i)
+				valueFunc: func(item int, index int, slice []int) any {
+					return fmt.Sprint(item)
 				},
 			},
 			want: map[int]any{

@@ -1,7 +1,8 @@
 package slices
 
 import (
-	"encoding/json"
+	"reflect"
+	"sort"
 	"testing"
 )
 
@@ -31,9 +32,9 @@ func TestToSlice(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			got := ToSlice(tt.args.dict, tt.args.transform)
-			gotJson, _ := json.Marshal(&got)
-			wantJson, _ := json.Marshal(&tt.want)
-			if string(gotJson) != string(wantJson) {
+			sort.Ints(got)
+			sort.Ints(tt.want)
+			if !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("ToSlice() = %v, want %v", got, tt.want)
 			}
 		})
