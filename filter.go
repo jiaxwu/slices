@@ -10,3 +10,13 @@ func Filter[T any](slice []T, condition func(T) bool) []T {
 	}
 	return filtered
 }
+
+func FilterWithIndex[T any](slice []T, condition func(T, int) bool) []T {
+	var filtered []T
+	for index, item := range slice {
+		if condition(item, index) {
+			filtered = append(filtered, item)
+		}
+	}
+	return filtered
+}
