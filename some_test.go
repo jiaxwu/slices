@@ -5,7 +5,7 @@ import "testing"
 func TestSome(t *testing.T) {
 	type args struct {
 		slice     []int
-		condition func(int) bool
+		condition func(item int, index int, slice []int) bool
 	}
 	tests := []struct {
 		name string
@@ -16,8 +16,8 @@ func TestSome(t *testing.T) {
 			name: "number1",
 			args: args{
 				slice: []int{2, 3, 4, 13},
-				condition: func(i int) bool {
-					return i == 2
+				condition: func(item int, index int, slice []int) bool {
+					return item == 2
 				},
 			},
 			want: true,
@@ -26,8 +26,8 @@ func TestSome(t *testing.T) {
 			name: "number2",
 			args: args{
 				slice: []int{2, 3, 4, 13},
-				condition: func(i int) bool {
-					return i == 5
+				condition: func(item int, index int, slice []int) bool {
+					return item == 5
 				},
 			},
 			want: false,

@@ -8,7 +8,7 @@ import (
 func TestForEach(t *testing.T) {
 	type args struct {
 		slice  []int
-		action func(int)
+		action func(item int, index int, slice []int)
 	}
 	tests := []struct {
 		name string
@@ -18,8 +18,8 @@ func TestForEach(t *testing.T) {
 			name: "number1",
 			args: args{
 				slice: []int{4, 5, 6},
-				action: func(i int) {
-					fmt.Println(i)
+				action: func(item int, index int, slice []int) {
+					fmt.Printf("item: %d, index: %d\n", item, index)
 				},
 			},
 		},

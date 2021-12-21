@@ -5,7 +5,7 @@ import "testing"
 func TestFindIndex(t *testing.T) {
 	type args struct {
 		slice     []int
-		condition func(int) bool
+		condition func(item int, index int, slice []int) bool
 	}
 	tests := []struct {
 		name string
@@ -16,8 +16,8 @@ func TestFindIndex(t *testing.T) {
 			name: "findNumber1",
 			args: args{
 				slice: []int{2, 3, 4, 13},
-				condition: func(i int) bool {
-					return i == 14
+				condition: func(item int, _ int, _ []int) bool {
+					return item == 14
 				},
 			},
 			want: -1,
@@ -26,8 +26,8 @@ func TestFindIndex(t *testing.T) {
 			name: "findNumber2",
 			args: args{
 				slice: []int{2, 3, 4, 13},
-				condition: func(i int) bool {
-					return i == 4
+				condition: func(item int, _ int, _ []int) bool {
+					return item == 4
 				},
 			},
 			want: 2,

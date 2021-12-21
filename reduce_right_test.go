@@ -8,7 +8,7 @@ import (
 func TestReduceRight(t *testing.T) {
 	type args struct {
 		slice  []int
-		reduce func(cur int, item int) int
+		reduce func(total int, item int, index int, slice []int) int
 		init   int
 	}
 	tests := []struct {
@@ -20,8 +20,8 @@ func TestReduceRight(t *testing.T) {
 			name: "number1",
 			args: args{
 				slice: []int{3, 4, 5, 3},
-				reduce: func(cur int, item int) int {
-					return cur + item
+				reduce: func(total int, item int, index int, slice []int) int {
+					return total + item
 				},
 				init: 0,
 			},

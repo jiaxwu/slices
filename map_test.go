@@ -1,15 +1,15 @@
 package slices
 
 import (
+	"fmt"
 	"reflect"
-	"strconv"
 	"testing"
 )
 
 func TestMap(t *testing.T) {
 	type args struct {
 		slice  []int
-		mapper func(int) string
+		mapper func(item int, index int, slice []int) string
 	}
 	tests := []struct {
 		name string
@@ -20,11 +20,11 @@ func TestMap(t *testing.T) {
 			name: "intToString",
 			args: args{
 				slice: []int{2, 3, 4, 13},
-				mapper: func(i int) string {
-					return strconv.Itoa(i)
+				mapper: func(item int, index int, slice []int) string {
+					return fmt.Sprintf("%d:%d", item, index)
 				},
 			},
-			want: []string{"2", "3", "4", "13"},
+			want: []string{"2:0", "3:1", "4:2", "13:3"},
 		},
 	}
 	for _, tt := range tests {

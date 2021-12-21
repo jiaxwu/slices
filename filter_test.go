@@ -8,7 +8,7 @@ import (
 func TestFilter(t *testing.T) {
 	type args struct {
 		slice  []int
-		filter func(int) bool
+		filter func(item int, index int, slice []int) bool
 	}
 	tests := []struct {
 		name string
@@ -19,11 +19,11 @@ func TestFilter(t *testing.T) {
 			name: "number1",
 			args: args{
 				slice: []int{18, 19, 6, 3, 43, 1, 32},
-				filter: func(i int) bool {
-					return i > 18
+				filter: func(item int, index int, _ []int) bool {
+					return item > 18 && index > 2
 				},
 			},
-			want: []int{19, 43, 32},
+			want: []int{43, 32},
 		},
 	}
 	for _, tt := range tests {
