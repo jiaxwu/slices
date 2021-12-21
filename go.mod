@@ -1,3 +1,3 @@
-module github.com/jiaxwu/slices
+module github.com/slobber/slices
 
 go 1.18
