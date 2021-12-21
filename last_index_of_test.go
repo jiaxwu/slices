@@ -6,7 +6,6 @@ func TestLastIndexOf(t *testing.T) {
 	type args struct {
 		slice []int
 		item  int
-		start int
 	}
 	tests := []struct {
 		name string
@@ -18,41 +17,21 @@ func TestLastIndexOf(t *testing.T) {
 			args: args{
 				slice: []int{3, 4, 5, 3, 2},
 				item:  3,
-				start: 5,
 			},
 			want: 3,
-		},
-		{
-			name: "number2",
-			args: args{
-				slice: []int{3, 4, 5, 3, 2},
-				item:  3,
-				start: -5,
-			},
-			want: 0,
-		},
-		{
-			name: "number3",
-			args: args{
-				slice: []int{3, 4, 5, 3, 2},
-				item:  3,
-				start: -6,
-			},
-			want: -1,
 		},
 		{
 			name: "number4",
 			args: args{
 				slice: []int{3, 4, 5, 3, 2},
-				item:  3,
-				start: 10,
+				item:  4,
 			},
-			want: 3,
+			want: 1,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := LastIndexOf(tt.args.slice, tt.args.item, tt.args.start); got != tt.want {
+			if got := LastIndexOf(tt.args.slice, tt.args.item); got != tt.want {
 				t.Errorf("LastIndexOf() = %v, want %v", got, tt.want)
 			}
 		})
