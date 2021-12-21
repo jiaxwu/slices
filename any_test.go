@@ -2,7 +2,7 @@ package slices
 
 import "testing"
 
-func TestSome(t *testing.T) {
+func TestAny(t *testing.T) {
 	type args struct {
 		slice     []int
 		condition func(item int, index int, slice []int) bool
@@ -35,8 +35,8 @@ func TestSome(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := Some(tt.args.slice, tt.args.condition); got != tt.want {
-				t.Errorf("Some() = %v, want %v", got, tt.want)
+			if got := Any(tt.args.slice, tt.args.condition); got != tt.want {
+				t.Errorf("Any() = %v, want %v", got, tt.want)
 			}
 		})
 	}
