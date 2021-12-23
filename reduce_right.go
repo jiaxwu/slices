@@ -1,7 +1,7 @@
 package slices
 
 // ReduceRight slice to a value
-func ReduceRight[T any](slice []T, reduce func(total T, item T, index int, slice []T) T, init T) T {
+func ReduceRight[T any, R any](slice []T, reduce func(total R, item T, index int, slice []T) R, init R) R {
 	for index := len(slice) - 1; index >= 0; index-- {
 		init = reduce(init, slice[index], index, slice)
 	}
